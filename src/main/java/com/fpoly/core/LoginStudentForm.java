@@ -1,20 +1,14 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package com.fpoly.core;
 
-public class LoginTeacher extends javax.swing.JFrame {
 
-    final static LoginStudent loginStudentForm = new LoginStudent();
-    final static LoginTeacher loginTeacherFrom = new LoginTeacher();
-    final static LoginAdmin loginAdminForm = new LoginAdmin();
-    final static ForgetPassword forgetPasswordForm = new ForgetPassword();
+public class LoginStudentForm extends javax.swing.JFrame {
 
-    /**
-     * Creates new form LoginStudent
-     */
-    public LoginTeacher() {
+    final static LoginStudentForm loginStudentForm = new LoginStudentForm();
+    final static LoginTeacherForm loginTeacherFrom = new LoginTeacherForm();
+    final static LoginAdminForm loginAdminForm = new LoginAdminForm();
+    final static ForgetPasswordForm forgetPasswordForm = new ForgetPasswordForm();
+    public LoginStudentForm() {
         initComponents();
         setLocationRelativeTo(null);
     }
@@ -25,9 +19,8 @@ public class LoginTeacher extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
-        jPanel4 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        pnLoginTeacher = new javax.swing.JPanel();
+        pnLoginStudent = new javax.swing.JPanel();
         btnStudent = new javax.swing.JButton();
         btnTeacher = new javax.swing.JButton();
         btnAdmin = new javax.swing.JButton();
@@ -45,14 +38,14 @@ public class LoginTeacher extends javax.swing.JFrame {
         jPanel1.setLayout(new java.awt.GridLayout(1, 2));
 
         jPanel3.setLayout(new java.awt.BorderLayout());
-        jPanel1.add(jPanel3);
-
-        jPanel4.setLayout(new java.awt.BorderLayout());
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/download-removebg-preview.png"))); // NOI18N
-        jPanel4.add(jLabel1, java.awt.BorderLayout.CENTER);
+        jPanel3.add(jLabel1, java.awt.BorderLayout.CENTER);
 
+        jPanel1.add(jPanel3);
+
+        btnStudent.setBackground(new java.awt.Color(254, 147, 15));
         btnStudent.setFont(new java.awt.Font("Dialog", 0, 13)); // NOI18N
         btnStudent.setForeground(new java.awt.Color(0, 0, 0));
         btnStudent.setText("Sinh viên");
@@ -62,7 +55,6 @@ public class LoginTeacher extends javax.swing.JFrame {
             }
         });
 
-        btnTeacher.setBackground(new java.awt.Color(254, 147, 15));
         btnTeacher.setFont(new java.awt.Font("Dialog", 0, 13)); // NOI18N
         btnTeacher.setText("Giảng viên");
         btnTeacher.addActionListener(new java.awt.event.ActionListener() {
@@ -97,6 +89,15 @@ public class LoginTeacher extends javax.swing.JFrame {
 
         lblForget.setForeground(new java.awt.Color(255, 98, 98));
         lblForget.setText("Forger password");
+        lblForget.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                lblForgetAncestorAdded(evt);
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
         lblForget.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblForgetMouseClicked(evt);
@@ -107,14 +108,14 @@ public class LoginTeacher extends javax.swing.JFrame {
         btnLogin.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         btnLogin.setText("Login");
 
-        javax.swing.GroupLayout pnLoginTeacherLayout = new javax.swing.GroupLayout(pnLoginTeacher);
-        pnLoginTeacher.setLayout(pnLoginTeacherLayout);
-        pnLoginTeacherLayout.setHorizontalGroup(
-            pnLoginTeacherLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnLoginTeacherLayout.createSequentialGroup()
+        javax.swing.GroupLayout pnLoginStudentLayout = new javax.swing.GroupLayout(pnLoginStudent);
+        pnLoginStudent.setLayout(pnLoginStudentLayout);
+        pnLoginStudentLayout.setHorizontalGroup(
+            pnLoginStudentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnLoginStudentLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(pnLoginTeacherLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnLoginTeacherLayout.createSequentialGroup()
+                .addGroup(pnLoginStudentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnLoginStudentLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(btnStudent)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -122,27 +123,27 @@ public class LoginTeacher extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(64, 64, 64))
-                    .addGroup(pnLoginTeacherLayout.createSequentialGroup()
-                        .addGroup(pnLoginTeacherLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnLoginStudentLayout.createSequentialGroup()
+                        .addGroup(pnLoginStudentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
                             .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 459, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(pnLoginTeacherLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(pnLoginStudentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 442, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(pnLoginTeacherLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(pnLoginStudentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addComponent(txtPassword)
                                     .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(txtUsername)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnLoginTeacherLayout.createSequentialGroup()
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnLoginStudentLayout.createSequentialGroup()
                                         .addComponent(chkRemember, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(258, 258, 258)
                                         .addComponent(lblForget)))))
                         .addContainerGap(33, Short.MAX_VALUE))))
         );
-        pnLoginTeacherLayout.setVerticalGroup(
-            pnLoginTeacherLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnLoginTeacherLayout.createSequentialGroup()
+        pnLoginStudentLayout.setVerticalGroup(
+            pnLoginStudentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnLoginStudentLayout.createSequentialGroup()
                 .addGap(34, 34, 34)
-                .addGroup(pnLoginTeacherLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(pnLoginStudentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnStudent)
                     .addComponent(btnAdmin)
                     .addComponent(btnTeacher))
@@ -157,7 +158,7 @@ public class LoginTeacher extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(34, 34, 34)
-                .addGroup(pnLoginTeacherLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(pnLoginStudentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(chkRemember)
                     .addComponent(lblForget))
                 .addGap(87, 87, 87)
@@ -165,53 +166,43 @@ public class LoginTeacher extends javax.swing.JFrame {
                 .addGap(167, 167, 167))
         );
 
+        jPanel1.add(pnLoginStudent);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 504, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, 0)
-                    .addComponent(pnLoginTeacher, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 770, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(pnLoginTeacher, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGap(0, 0, Short.MAX_VALUE)))
         );
 
         pack();
-        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnStudentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStudentActionPerformed
-        this.setVisible(false);
-        new LoginStudent().setVisible(true);
-
+        // TODO add your handling code here:
     }//GEN-LAST:event_btnStudentActionPerformed
 
     private void btnTeacherActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTeacherActionPerformed
-
+        this.setVisible(false);
+        new LoginTeacherForm().setVisible(true);
+        
     }//GEN-LAST:event_btnTeacherActionPerformed
 
     private void btnAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdminActionPerformed
         this.setVisible(false);
-        new LoginAdmin().setVisible(true);
+        new LoginAdminForm().setVisible(true);
     }//GEN-LAST:event_btnAdminActionPerformed
+
+    private void lblForgetAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_lblForgetAncestorAdded
+    }//GEN-LAST:event_lblForgetAncestorAdded
 
     private void lblForgetMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblForgetMouseClicked
         this.setVisible(false);
-        new ForgetPassword().setVisible(true);
+        new ForgetPasswordForm().setVisible(true);
     }//GEN-LAST:event_lblForgetMouseClicked
 
     /**
@@ -231,13 +222,13 @@ public class LoginTeacher extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(LoginTeacher.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LoginStudentForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(LoginTeacher.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LoginStudentForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(LoginTeacher.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LoginStudentForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(LoginTeacher.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LoginStudentForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
@@ -245,7 +236,7 @@ public class LoginTeacher extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new LoginTeacher().setVisible(true);
+                new LoginStudentForm().setVisible(true);
             }
         });
     }
@@ -262,9 +253,8 @@ public class LoginTeacher extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
     private javax.swing.JLabel lblForget;
-    private javax.swing.JPanel pnLoginTeacher;
+    private javax.swing.JPanel pnLoginStudent;
     private javax.swing.JTextField txtPassword;
     private javax.swing.JTextField txtUsername;
     // End of variables declaration//GEN-END:variables
