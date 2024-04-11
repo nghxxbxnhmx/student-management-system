@@ -8,7 +8,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 
 public class StudentDAO {
-
+    public static final String URI = "";
     public String loginStudent(String tenTK) {
         String mkst = "";
         String sqlLogin = "select MK from sinhvien where tenTK = ?";
@@ -86,4 +86,6 @@ public class StudentDAO {
         }
         return "";
     }
+    
+    
 }

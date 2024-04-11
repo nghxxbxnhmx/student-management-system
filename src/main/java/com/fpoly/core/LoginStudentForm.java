@@ -1,6 +1,9 @@
 package com.fpoly.core;
 
 import com.fpoly.core.dao.StudentDAO;
+import com.fpoly.core.forms.ForgetPasswordForm;
+import com.fpoly.core.forms.LoginAdminForm;
+import com.fpoly.core.forms.LoginTeacherForm;
 import com.fpoly.core.models.StudentModel;
 import java.util.Arrays;
 import javax.swing.JOptionPane;
@@ -85,7 +88,6 @@ public class LoginStudentForm extends javax.swing.JFrame {
 
         btnStudent.setBackground(new java.awt.Color(254, 147, 15));
         btnStudent.setFont(new java.awt.Font("Dialog", 0, 13)); // NOI18N
-        btnStudent.setForeground(new java.awt.Color(0, 0, 0));
         btnStudent.setText("Sinh viên");
         btnStudent.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
