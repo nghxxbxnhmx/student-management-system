@@ -30,10 +30,10 @@ public class LoginAdminForm extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         txtUsername = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        txtPassword = new javax.swing.JTextField();
         chkRemember = new javax.swing.JCheckBox();
         lblForget = new javax.swing.JLabel();
         btnLogin = new javax.swing.JButton();
+        txtPassword = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -81,8 +81,6 @@ public class LoginAdminForm extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Dialog", 0, 13)); // NOI18N
         jLabel4.setText("Password");
 
-        txtPassword.setFont(new java.awt.Font("Dialog", 0, 13)); // NOI18N
-
         chkRemember.setText("Remember me");
 
         lblForget.setForeground(new java.awt.Color(255, 98, 98));
@@ -116,16 +114,15 @@ public class LoginAdminForm extends javax.swing.JFrame {
                         .addGroup(pnLoginAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
                             .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 459, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(pnLoginAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(pnLoginAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 442, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(pnLoginAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(txtPassword)
-                                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtUsername)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnLoginAdminLayout.createSequentialGroup()
-                                        .addComponent(chkRemember, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(258, 258, 258)
-                                        .addComponent(lblForget)))))
+                                .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(txtUsername)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnLoginAdminLayout.createSequentialGroup()
+                                    .addComponent(chkRemember, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(258, 258, 258)
+                                    .addComponent(lblForget)))
+                            .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 454, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap(33, Short.MAX_VALUE))))
         );
         pnLoginAdminLayout.setVerticalGroup(
@@ -252,7 +249,7 @@ public class LoginAdminForm extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JLabel lblForget;
     private javax.swing.JPanel pnLoginAdmin;
-    private javax.swing.JTextField txtPassword;
+    private javax.swing.JPasswordField txtPassword;
     private javax.swing.JTextField txtUsername;
     // End of variables declaration//GEN-END:variables
 }

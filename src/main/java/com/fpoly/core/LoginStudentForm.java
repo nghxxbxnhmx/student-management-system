@@ -1,6 +1,9 @@
-
 package com.fpoly.core;
 
+import com.fpoly.core.dao.StudentDAO;
+import com.fpoly.core.models.StudentModel;
+import java.util.Arrays;
+import javax.swing.JOptionPane;
 
 public class LoginStudentForm extends javax.swing.JFrame {
 
@@ -8,9 +11,46 @@ public class LoginStudentForm extends javax.swing.JFrame {
     final static LoginTeacherForm loginTeacherFrom = new LoginTeacherForm();
     final static LoginAdminForm loginAdminForm = new LoginAdminForm();
     final static ForgetPasswordForm forgetPasswordForm = new ForgetPasswordForm();
+    final StudentDAO stdao = new StudentDAO();
+
     public LoginStudentForm() {
         initComponents();
         setLocationRelativeTo(null);
+    }
+
+    public boolean checkNullUsername(String username) {
+        return !(username.equals(""));
+    }
+
+    public boolean checkNullPassword(String password) {
+        return !(password.equals(""));
+    }
+
+    public void login(String tenTK, String passWordForm) {
+        if (!checkNullUsername(tenTK)) {
+            JOptionPane.showMessageDialog(this, "Tên tài khoản không được trống");
+            return;
+        }
+        if (!checkNullPassword(passWordForm)) {
+            JOptionPane.showMessageDialog(this, "Mật khẩu không được trống");
+            return;
+        }
+        //lay password tu database
+        String passWordStudent;
+        passWordStudent = stdao.loginStudent(tenTK);
+        //tim matkhau tu ten tenTK, neu mk=="" thi tenTK khong ton tai
+        if (passWordStudent.equals("")) {
+            JOptionPane.showMessageDialog(this, "Tên tài khoản không tồn tại");
+            return;
+        }
+        if (passWordForm.equals(passWordStudent)) {
+            JOptionPane.showMessageDialog(this, "Đăng nhập thành công");
+            this.setVisible(false);
+            //goi form sinh viên 
+
+        } else {
+            JOptionPane.showMessageDialog(this, "Mật khẩu không chính xác");
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -28,12 +68,10 @@ public class LoginStudentForm extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         txtUsername = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        txtPassword = new javax.swing.JTextField();
         chkRemember = new javax.swing.JCheckBox();
         lblForget = new javax.swing.JLabel();
         btnLogin = new javax.swing.JButton();
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        txtPassword = new javax.swing.JPasswordField();
 
         jPanel1.setLayout(new java.awt.GridLayout(1, 2));
 
@@ -83,8 +121,6 @@ public class LoginStudentForm extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Dialog", 0, 13)); // NOI18N
         jLabel4.setText("Password");
 
-        txtPassword.setFont(new java.awt.Font("Dialog", 0, 13)); // NOI18N
-
         chkRemember.setText("Remember me");
 
         lblForget.setForeground(new java.awt.Color(255, 98, 98));
@@ -107,6 +143,16 @@ public class LoginStudentForm extends javax.swing.JFrame {
         btnLogin.setBackground(new java.awt.Color(254, 147, 15));
         btnLogin.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         btnLogin.setText("Login");
+        btnLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLoginActionPerformed(evt);
+            }
+        });
+        btnLogin.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                btnLoginKeyTyped(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnLoginStudentLayout = new javax.swing.GroupLayout(pnLoginStudent);
         pnLoginStudent.setLayout(pnLoginStudentLayout);
@@ -124,20 +170,22 @@ public class LoginStudentForm extends javax.swing.JFrame {
                         .addComponent(btnAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(64, 64, 64))
                     .addGroup(pnLoginStudentLayout.createSequentialGroup()
-                        .addGroup(pnLoginStudentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 459, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(pnLoginStudentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(pnLoginStudentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnLogin, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 459, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnLoginStudentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 442, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGroup(pnLoginStudentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(txtPassword)
                                     .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(txtUsername)
                                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnLoginStudentLayout.createSequentialGroup()
                                         .addComponent(chkRemember, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(258, 258, 258)
                                         .addComponent(lblForget)))))
-                        .addContainerGap(33, Short.MAX_VALUE))))
+                        .addContainerGap(33, Short.MAX_VALUE))
+                    .addGroup(pnLoginStudentLayout.createSequentialGroup()
+                        .addComponent(txtPassword)
+                        .addGap(38, 38, 38))))
         );
         pnLoginStudentLayout.setVerticalGroup(
             pnLoginStudentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -189,7 +237,7 @@ public class LoginStudentForm extends javax.swing.JFrame {
     private void btnTeacherActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTeacherActionPerformed
         this.setVisible(false);
         new LoginTeacherForm().setVisible(true);
-        
+
     }//GEN-LAST:event_btnTeacherActionPerformed
 
     private void btnAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdminActionPerformed
@@ -204,6 +252,18 @@ public class LoginStudentForm extends javax.swing.JFrame {
         this.setVisible(false);
         new ForgetPasswordForm().setVisible(true);
     }//GEN-LAST:event_lblForgetMouseClicked
+
+    private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
+        String tenTK = txtUsername.getText();
+        char[] arrpass = txtPassword.getPassword();
+        String passWordForm = new String(arrpass);
+        login(tenTK, passWordForm);
+
+    }//GEN-LAST:event_btnLoginActionPerformed
+
+    private void btnLoginKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnLoginKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnLoginKeyTyped
 
     /**
      * @param args the command line arguments
@@ -255,7 +315,7 @@ public class LoginStudentForm extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JLabel lblForget;
     private javax.swing.JPanel pnLoginStudent;
-    private javax.swing.JTextField txtPassword;
+    private javax.swing.JPasswordField txtPassword;
     private javax.swing.JTextField txtUsername;
     // End of variables declaration//GEN-END:variables
 }

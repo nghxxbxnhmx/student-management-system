@@ -4,12 +4,17 @@
  */
 package com.fpoly.core;
 
-public class LoginTeacherForm extends javax.swing.JFrame {
+import com.fpoly.core.dao.StudentDAO;
+import com.fpoly.core.dao.TeacherDAO;
+import javax.swing.JOptionPane;
 
+public class LoginTeacherForm extends javax.swing.JFrame {
+    
     final static LoginStudentForm loginStudentForm = new LoginStudentForm();
     final static LoginTeacherForm loginTeacherFrom = new LoginTeacherForm();
     final static LoginAdminForm loginAdminForm = new LoginAdminForm();
     final static ForgetPasswordForm forgetPasswordForm = new ForgetPasswordForm();
+    final TeacherDAO tcdao = new TeacherDAO();
 
     /**
      * Creates new form LoginStudent
@@ -18,7 +23,42 @@ public class LoginTeacherForm extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
     }
+    
+    public boolean checkNullUsername(String username) {
+        return !(username.equals(""));
+    }
+    
+    public boolean checkNullPassword(String password) {
+        return !(password.equals(""));
+    }
+    
+    public void login(String tenTK, String passWordForm) {
+        if (!loginStudentForm.checkNullUsername(tenTK)) {
+            JOptionPane.showMessageDialog(this, "Tên tài khoản không được trống");
+            return;
+        }
+        if (!loginStudentForm.checkNullPassword(passWordForm)) {
+            JOptionPane.showMessageDialog(this, "Mật khẩu không được trống");
+            return;
+        }
+        //lay password tu database
+        String passWordStudent;
+        passWordStudent = tcdao.loginTecher(tenTK);
+        //tim matkhau tu ten tenTK, neu mk=="" thi tenTK khong ton tai
+        if (passWordStudent.equals("")) {
+            JOptionPane.showMessageDialog(this, "Tên tài khoản không tồn tại");
+            return;
+        }
+        if (passWordForm.equals(passWordStudent)) {
+            JOptionPane.showMessageDialog(this, "Đăng nhập thành công");
+            this.setVisible(false);
+            //goi form sinh viên 
 
+        } else {
+            JOptionPane.showMessageDialog(this, "Mật khẩu không chính xác");
+        }
+    }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -35,10 +75,10 @@ public class LoginTeacherForm extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         txtUsername = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        txtPassword = new javax.swing.JTextField();
         chkRemember = new javax.swing.JCheckBox();
         lblForget = new javax.swing.JLabel();
         btnLogin = new javax.swing.JButton();
+        txtPassword = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -91,8 +131,6 @@ public class LoginTeacherForm extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Dialog", 0, 13)); // NOI18N
         jLabel4.setText("Password");
 
-        txtPassword.setFont(new java.awt.Font("Dialog", 0, 13)); // NOI18N
-
         chkRemember.setText("Remember me");
 
         lblForget.setForeground(new java.awt.Color(255, 98, 98));
@@ -106,6 +144,11 @@ public class LoginTeacherForm extends javax.swing.JFrame {
         btnLogin.setBackground(new java.awt.Color(254, 147, 15));
         btnLogin.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         btnLogin.setText("Login");
+        btnLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLoginActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnLoginTeacherLayout = new javax.swing.GroupLayout(pnLoginTeacher);
         pnLoginTeacher.setLayout(pnLoginTeacherLayout);
@@ -128,15 +171,18 @@ public class LoginTeacherForm extends javax.swing.JFrame {
                             .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 459, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(pnLoginTeacherLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 442, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(pnLoginTeacherLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(txtPassword)
+                                .addGroup(pnLoginTeacherLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtUsername)
                                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnLoginTeacherLayout.createSequentialGroup()
                                         .addComponent(chkRemember, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(258, 258, 258)
                                         .addComponent(lblForget)))))
-                        .addContainerGap(33, Short.MAX_VALUE))))
+                        .addContainerGap(33, Short.MAX_VALUE))
+                    .addGroup(pnLoginTeacherLayout.createSequentialGroup()
+                        .addGroup(pnLoginTeacherLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 445, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 445, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         pnLoginTeacherLayout.setVerticalGroup(
             pnLoginTeacherLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -154,9 +200,9 @@ public class LoginTeacherForm extends javax.swing.JFrame {
                 .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26)
                 .addComponent(jLabel4)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34)
+                .addGap(40, 40, 40)
                 .addGroup(pnLoginTeacherLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(chkRemember)
                     .addComponent(lblForget))
@@ -214,6 +260,12 @@ public class LoginTeacherForm extends javax.swing.JFrame {
         new ForgetPasswordForm().setVisible(true);
     }//GEN-LAST:event_lblForgetMouseClicked
 
+    private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
+        String tenTK = txtUsername.getText();        
+        String mk = new String(txtPassword.getPassword());
+        login(tenTK, mk);
+    }//GEN-LAST:event_btnLoginActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -267,7 +319,7 @@ public class LoginTeacherForm extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JLabel lblForget;
     private javax.swing.JPanel pnLoginTeacher;
-    private javax.swing.JTextField txtPassword;
+    private javax.swing.JPasswordField txtPassword;
     private javax.swing.JTextField txtUsername;
     // End of variables declaration//GEN-END:variables
 }

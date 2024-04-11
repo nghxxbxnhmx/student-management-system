@@ -1,10 +1,105 @@
 package com.fpoly.core;
 
+import com.fpoly.core.dao.StudentDAO;
+import jakarta.mail.Authenticator;
+import jakarta.mail.Message;
+import jakarta.mail.MessagingException;
+import jakarta.mail.PasswordAuthentication;
+import jakarta.mail.Session;
+import jakarta.mail.Transport;
+import jakarta.mail.internet.InternetAddress;
+import jakarta.mail.internet.MimeMessage;
+import java.util.Properties;
+import javax.swing.JOptionPane;
+
 public class ForgetPasswordForm extends javax.swing.JFrame {
+
     LoginStudentForm loginStudentForm = new LoginStudentForm();
+    StudentDAO stdao = new StudentDAO();
+    int codeForgetPassword;
+
     public ForgetPasswordForm() {
         initComponents();
         setLocationRelativeTo(null);
+    }
+
+    public void checkSendMail() {
+        String email = "";
+        String emailForm = txtEmail.getText();
+        String tenTK = txtUsername.getText();
+        String tensv = stdao.selectTensv(tenTK);
+        if(!stdao.checkTk(tenTK)){
+            JOptionPane.showMessageDialog(this, "Tài khoản không tồn tại","Lấy mã thất bại", JOptionPane.HEIGHT);
+            return;
+        }
+        email = stdao.selectEmail(tenTK);
+        if (emailForm.equals("")) {
+            JOptionPane.showMessageDialog(this, "Email không được để trống", "Lấy mã thất bại", JOptionPane.HEIGHT);
+        }
+        if (!emailForm.equals(email)) {
+            JOptionPane.showMessageDialog(this, "Email Không đúng\nVui lòng nhập đúng email", "Lấy mã thất bại", JOptionPane.HEIGHT);
+            return;
+        }
+        final String username = "cangntps36910@fpt.edu.vn";
+        final String password = "rknh pozv ljoc qzdd";
+
+        Properties prop = new Properties();
+        prop.put("mail.smtp.host", "smtp.gmail.com");
+        prop.put("mail.smtp.port", "587");
+        prop.put("mail.smtp.auth", "true");
+        prop.put("mail.smtp.starttls.enable", "true"); //TLS
+
+        Session session = Session.getInstance(prop, new Authenticator() {
+            @Override
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(username, password);
+            }
+        });
+        try {
+            Message message = new MimeMessage(session);
+            message.setFrom(new InternetAddress("cangntps36910@fpt.edu.vn"));
+            message.setRecipients(
+                    Message.RecipientType.TO,
+                    InternetAddress.parse(txtEmail.getText())
+            );
+            message.setSubject("Yêu cầu cấp mã đổi mật khẩu");
+            message.setText("Dear Mail " + tensv + "\nMã đổi mật khẩu mới của bạn là: "
+                    + codeForgetPassword);
+
+            Transport.send(message);
+            JOptionPane.showMessageDialog(this, "Lấy code thành công");
+
+        } catch (MessagingException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public boolean checkNull() {
+        if (txtUsername.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Không được để trống 'Username'");
+            return false;
+        }
+        if (txtEmail.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Không được để trống 'Email'");
+            return false;
+        }
+        if (txtCode.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Không được để trống 'Code'");
+            return false;
+        }
+        if (txtNewPassword.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Không được để trống 'New password'");
+            return false;
+        }
+        if (txtConfrimPassword.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Không được để trống 'Confirm password'");
+            return false;
+        }
+        return true;
+    }
+
+    public boolean checkConFirmNewPassword() {
+        return txtNewPassword.getText().equals(txtConfrimPassword.getText());
     }
 
     @SuppressWarnings("unchecked")
@@ -28,7 +123,7 @@ public class ForgetPasswordForm extends javax.swing.JFrame {
         txtNewPassword = new javax.swing.JTextField();
         txtConfrimPassword = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btnGetCode = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -65,6 +160,11 @@ public class ForgetPasswordForm extends javax.swing.JFrame {
         btnResetPassword.setBackground(new java.awt.Color(254, 147, 15));
         btnResetPassword.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         btnResetPassword.setText("Reset password");
+        btnResetPassword.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnResetPasswordActionPerformed(evt);
+            }
+        });
 
         jLabel5.setFont(new java.awt.Font("Dialog", 0, 13)); // NOI18N
         jLabel5.setText("Code");
@@ -81,11 +181,11 @@ public class ForgetPasswordForm extends javax.swing.JFrame {
         jLabel8.setFont(new java.awt.Font("Dialog", 0, 13)); // NOI18N
         jLabel8.setText("Confirm password");
 
-        jButton1.setBackground(new java.awt.Color(254, 147, 15));
-        jButton1.setText("Get code");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnGetCode.setBackground(new java.awt.Color(254, 147, 15));
+        btnGetCode.setText("Get code");
+        btnGetCode.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnGetCodeActionPerformed(evt);
             }
         });
 
@@ -115,7 +215,7 @@ public class ForgetPasswordForm extends javax.swing.JFrame {
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnNewPasswordLayout.createSequentialGroup()
                                 .addComponent(txtCode)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(btnGetCode, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(txtNewPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 454, Short.MAX_VALUE)
                             .addComponent(txtEmail))))
                 .addContainerGap(43, Short.MAX_VALUE))
@@ -138,7 +238,7 @@ public class ForgetPasswordForm extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnNewPasswordLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtCode, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnGetCode, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -184,14 +284,39 @@ public class ForgetPasswordForm extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void btnGetCodeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGetCodeActionPerformed
+        codeForgetPassword = (int) Math.round(Math.random() * 10000);
+        checkSendMail();
+    }//GEN-LAST:event_btnGetCodeActionPerformed
 
     private void lblForgetMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblForgetMouseClicked
         this.setVisible(false);
         loginStudentForm.setVisible(true);
     }//GEN-LAST:event_lblForgetMouseClicked
+
+    private void btnResetPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetPasswordActionPerformed
+        String newPassword, conFirmPassword;
+        int code = Integer.parseInt(txtCode.getText());
+        newPassword = txtNewPassword.getText();
+        conFirmPassword = txtConfrimPassword.getText();
+        if (!checkNull()) {
+            return;
+        }
+
+        if (!(code == codeForgetPassword)) {
+            JOptionPane.showMessageDialog(this, "'Code' bạn nhập không đúng", "Reset password thất bại", JOptionPane.HEIGHT);
+            return;
+        }
+        if (!newPassword.equals(conFirmPassword)) {
+            JOptionPane.showMessageDialog(this, "Mật khẩu không giống nhau", "Reset password thất bại", JOptionPane.HEIGHT);
+            return;
+        }
+        
+        JOptionPane.showMessageDialog(this, "Đổi mật khẩu thành công");
+        this.setVisible(false);
+
+
+    }//GEN-LAST:event_btnResetPasswordActionPerformed
 
     /**
      * @param args the command line arguments
@@ -230,9 +355,9 @@ public class ForgetPasswordForm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnGetCode;
     private javax.swing.JButton btnResetPassword;
     private javax.swing.JCheckBox chkRemember;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
