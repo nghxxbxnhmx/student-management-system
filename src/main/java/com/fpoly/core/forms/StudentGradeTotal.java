@@ -41,7 +41,7 @@ public class StudentGradeTotal extends javax.swing.JFrame {
         lblGradeSemester = new javax.swing.JLabel();
         lblLichHoc = new javax.swing.JLabel();
         lblLichHoc1 = new javax.swing.JLabel();
-        lblLichHoc2 = new javax.swing.JLabel();
+        lblLichthi = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
@@ -133,12 +133,22 @@ public class StudentGradeTotal extends javax.swing.JFrame {
 
         lblLichHoc.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         lblLichHoc.setText("Lịch học");
+        lblLichHoc.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblLichHocMouseClicked(evt);
+            }
+        });
 
         lblLichHoc1.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         lblLichHoc1.setText("Dịch vụ");
 
-        lblLichHoc2.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
-        lblLichHoc2.setText("Điểm danh");
+        lblLichthi.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        lblLichthi.setText("Lịch thi");
+        lblLichthi.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblLichthiMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -147,7 +157,7 @@ public class StudentGradeTotal extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(34, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblLichHoc2, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblLichthi, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblLichHoc1, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblGradeSemester, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblLichHoc, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -164,7 +174,7 @@ public class StudentGradeTotal extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lblLichHoc, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(lblLichHoc2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblLichthi, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(lblLichHoc1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(194, Short.MAX_VALUE))
@@ -268,9 +278,19 @@ public class StudentGradeTotal extends javax.swing.JFrame {
     }//GEN-LAST:event_lblHomePageMouseClicked
 
     private void lblGradeSemestertableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblGradeSemestertableMouseClicked
-this.setVisible(false);
-new StudentGradeSemester().setVisible(true);
+        this.setVisible(false);
+        new StudentGradeSemester().setVisible(true);
     }//GEN-LAST:event_lblGradeSemestertableMouseClicked
+
+    private void lblLichthiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblLichthiMouseClicked
+        this.setVisible(false);
+        new lichThi().setVisible(true);
+    }//GEN-LAST:event_lblLichthiMouseClicked
+
+    private void lblLichHocMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblLichHocMouseClicked
+        this.setVisible(false);
+        new studentschedule().setVisible(true);
+    }//GEN-LAST:event_lblLichHocMouseClicked
 
     /**
      * @param args the command line arguments
@@ -332,6 +352,6 @@ new StudentGradeSemester().setVisible(true);
     private javax.swing.JLabel lblHomePage;
     private javax.swing.JLabel lblLichHoc;
     private javax.swing.JLabel lblLichHoc1;
-    private javax.swing.JLabel lblLichHoc2;
+    private javax.swing.JLabel lblLichthi;
     // End of variables declaration//GEN-END:variables
 }

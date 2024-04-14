@@ -129,12 +129,22 @@ public class PersonalInformationForm extends javax.swing.JFrame {
 
         lblLichHoc.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         lblLichHoc.setText("Lịch học");
+        lblLichHoc.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblLichHocMouseClicked(evt);
+            }
+        });
 
         lblLichHoc1.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         lblLichHoc1.setText("Dịch vụ");
 
         lblLichHoc2.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
-        lblLichHoc2.setText("Điểm danh");
+        lblLichHoc2.setText("Lịch thi");
+        lblLichHoc2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblLichHoc2MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -497,10 +507,20 @@ public class PersonalInformationForm extends javax.swing.JFrame {
     }//GEN-LAST:event_lblTimSinhVienMouseClicked
 
     private void lblLopCuaToiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblLopCuaToiMouseClicked
-this.setVisible(false);
-new teacherclass().setVisible(true);
+        this.setVisible(false);
+        new StudentGradeSemester().setVisible(true);
     }//GEN-LAST:event_lblLopCuaToiMouseClicked
-    
+
+    private void lblLichHocMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblLichHocMouseClicked
+        this.setVisible(false);
+        new studentschedule().setVisible(true);
+    }//GEN-LAST:event_lblLichHocMouseClicked
+
+    private void lblLichHoc2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblLichHoc2MouseClicked
+        this.setVisible(false);
+        new lichThi().setVisible(true);
+    }//GEN-LAST:event_lblLichHoc2MouseClicked
+
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
     }// GEN-LAST:event_jButton1ActionPerformed

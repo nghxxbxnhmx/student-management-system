@@ -13,29 +13,31 @@ import jakarta.mail.internet.MimeMessage;
 import java.util.Properties;
 import javax.swing.JOptionPane;
 import com.fpoly.core.dao.Interface.Interface_ForgetPasswrod;
+import com.fpoly.core.services.CallApiService;
 
 public class ForgetPasswordForm extends javax.swing.JFrame implements Interface_ForgetPasswrod {
-    
+
     LoginStudentForm loginStudentForm = new LoginStudentForm();
     StudentDAO stdao = new StudentDAO();
+    CallApiService callASV = new CallApiService();
     int codeForgetPassword;
-    
+
     public ForgetPasswordForm() {
         initComponents();
         setLocationRelativeTo(null);
     }
-    
+
     @Override
     public void checkSendMail() {
         String email = "";
         String emailForm = txtEmail.getText();
         String tenTK = txtUsername.getText();
-        String tensv = stdao.selectTensv(tenTK);
-        if (!stdao.checkTk(tenTK)) {
+        String tensv = stdao.getNameStudentBytenTK(tenTK);
+        if (!stdao.existsTenTk(tenTK)) {
             JOptionPane.showMessageDialog(this, "Tài khoản không tồn tại", "Lấy mã thất bại", JOptionPane.HEIGHT);
             return;
         }
-        email = stdao.selectEmail(tenTK);
+        email = stdao.getEmailByTenTk(tenTK);
         if (emailForm.equals("")) {
             JOptionPane.showMessageDialog(this, "Email không được để trống", "Lấy mã thất bại", JOptionPane.HEIGHT);
         }
@@ -45,7 +47,7 @@ public class ForgetPasswordForm extends javax.swing.JFrame implements Interface_
         }
         final String username = "cangntps36910@fpt.edu.vn";
         final String password = "rknh pozv ljoc qzdd";
-        
+
         Properties prop = new Properties();
         prop.put("mail.smtp.host", "smtp.gmail.com");
         prop.put("mail.smtp.port", "587");
@@ -68,44 +70,51 @@ public class ForgetPasswordForm extends javax.swing.JFrame implements Interface_
             message.setSubject("Yêu cầu cấp mã đổi mật khẩu");
             message.setText("Dear Mail " + tensv + "\nMã đổi mật khẩu mới của bạn là: "
                     + codeForgetPassword);
-            
+
             Transport.send(message);
             JOptionPane.showMessageDialog(this, "Lấy code thành công");
-            
+
         } catch (MessagingException e) {
             System.out.println(e.getMessage());
         }
     }
-    
+
     @Override
     public boolean checkNull() {
-        if (txtUsername.getText().equals("")) {
+        String username = txtUsername.getText();
+        String email = txtEmail.getText();
+        String code = txtCode.getText();
+        String newpass = txtNewPassword.getText();
+        String confirmpass = txtConfrimPassword.getText();
+
+        if (callASV.checkNull(username)) {
             JOptionPane.showMessageDialog(this, "Không được để trống 'Username'");
             return false;
         }
-        if (txtEmail.getText().equals("")) {
+        if (callASV.checkNull(email)) {
             JOptionPane.showMessageDialog(this, "Không được để trống 'Email'");
             return false;
         }
-        if (txtCode.getText().equals("")) {
+        if (callASV.checkNull(code)) {
             JOptionPane.showMessageDialog(this, "Không được để trống 'Code'");
             return false;
         }
-        if (txtNewPassword.getText().equals("")) {
+        if (callASV.checkNull(newpass)) {
             JOptionPane.showMessageDialog(this, "Không được để trống 'New password'");
             return false;
         }
-        if (txtConfrimPassword.getText().equals("")) {
+        if (callASV.checkNull(confirmpass)) {
             JOptionPane.showMessageDialog(this, "Không được để trống 'Confirm password'");
             return false;
         }
         return true;
     }
-    
+
     @Override
     public boolean checkConFirmNewPassword(String newPassword, String conFirmPass) {
-        return newPassword.equals(conFirmPass);
+        return callASV.checkConfrimPassWhenForgetpassword(newPassword, conFirmPass);
     }
+
     @Override
     public boolean checkCode(int code) {
         return (code == codeForgetPassword);
@@ -114,14 +123,14 @@ public class ForgetPasswordForm extends javax.swing.JFrame implements Interface_
     @Override
     public boolean checkCodeNumberFormat(String code) {
         try {
-            Integer.valueOf(code);            
-            
+            Integer.valueOf(code);
+
         } catch (NumberFormatException e) {
-            return false;            
+            return false;
         }
-        return true;        
+        return true;
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -317,16 +326,25 @@ public class ForgetPasswordForm extends javax.swing.JFrame implements Interface_
     private void btnResetPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetPasswordActionPerformed
         String newPassword, conFirmPassword;
         String tenTK = txtUsername.getText();
-        String codeForm = txtCode.getText();        
+        String codeForm = txtCode.getText();
         newPassword = txtNewPassword.getText();
         conFirmPassword = txtConfrimPassword.getText();
-        int code = Integer.parseInt(codeForm);
+        int code;
+        try {
+            code = Integer.parseInt(codeForm);
+        } catch (Exception e) {
+            code = 0;
+        }
         if (!checkNull()) {
+            return;
+        }
+        if (!stdao.existsTenTk(tenTK)) {
+            JOptionPane.showMessageDialog(this, "Tài khoản không tồn tại", "Lấy mã thất bại", JOptionPane.HEIGHT);
             return;
         }
         if (!checkCodeNumberFormat(codeForm)) {
             JOptionPane.showMessageDialog(this, "'Code' không chính xác");
-            return;            
+            return;
         }
         if (!checkCode(code)) {
             JOptionPane.showMessageDialog(this, "'Code' bạn nhập không đúng", "Reset password thất bại", JOptionPane.HEIGHT);
@@ -336,9 +354,9 @@ public class ForgetPasswordForm extends javax.swing.JFrame implements Interface_
             JOptionPane.showMessageDialog(this, "Mật khẩu không giống nhau", "Reset password thất bại", JOptionPane.HEIGHT);
             return;
         }
-        
+
         stdao.updateMK(tenTK, newPassword);
-        
+
     }//GEN-LAST:event_btnResetPasswordActionPerformed
 
     /**
@@ -402,6 +420,5 @@ public class ForgetPasswordForm extends javax.swing.JFrame implements Interface_
     public boolean checkCode(String code) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-
 
 }

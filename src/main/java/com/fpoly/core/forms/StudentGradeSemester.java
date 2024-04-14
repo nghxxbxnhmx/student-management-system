@@ -40,7 +40,7 @@ public class StudentGradeSemester extends javax.swing.JFrame {
         lblLopCuaToi = new javax.swing.JLabel();
         lblLichHoc = new javax.swing.JLabel();
         lblLichHoc1 = new javax.swing.JLabel();
-        lblLichHoc2 = new javax.swing.JLabel();
+        lblLichthi = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -109,11 +109,11 @@ public class StudentGradeSemester extends javax.swing.JFrame {
         lblLichHoc1.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         lblLichHoc1.setText("Dịch vụ");
 
-        lblLichHoc2.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
-        lblLichHoc2.setText("Điểm danh");
-        lblLichHoc2.addMouseListener(new java.awt.event.MouseAdapter() {
+        lblLichthi.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        lblLichthi.setText("Lịch thi");
+        lblLichthi.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblLichHoc2MouseClicked(evt);
+                lblLichthiMouseClicked(evt);
             }
         });
 
@@ -124,7 +124,7 @@ public class StudentGradeSemester extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnNavLayout.createSequentialGroup()
                 .addContainerGap(34, Short.MAX_VALUE)
                 .addGroup(pnNavLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblLichHoc2, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblLichthi, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblLichHoc1, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblLopCuaToi, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblLichHoc, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -141,7 +141,7 @@ public class StudentGradeSemester extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(lblLichHoc, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(lblLichHoc2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblLichthi, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(lblLichHoc1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(216, Short.MAX_VALUE))
@@ -287,12 +287,14 @@ public class StudentGradeSemester extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel5MouseClicked
 
     private void lblLichHocMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblLichHocMouseClicked
-        
+        this.setVisible(false);
+        new studentschedule().setVisible(true);
     }//GEN-LAST:event_lblLichHocMouseClicked
 
-    private void lblLichHoc2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblLichHoc2MouseClicked
-        
-    }//GEN-LAST:event_lblLichHoc2MouseClicked
+    private void lblLichthiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblLichthiMouseClicked
+        this.setVisible(false);
+        new lichThi().setVisible(true);
+    }//GEN-LAST:event_lblLichthiMouseClicked
 
     /**
      * @param args the command line arguments
@@ -351,7 +353,7 @@ public class StudentGradeSemester extends javax.swing.JFrame {
     private javax.swing.JTable jTable1;
     private javax.swing.JLabel lblLichHoc;
     private javax.swing.JLabel lblLichHoc1;
-    private javax.swing.JLabel lblLichHoc2;
+    private javax.swing.JLabel lblLichthi;
     private javax.swing.JLabel lblLopCuaToi;
     private javax.swing.JLabel lblTimSinhVien;
     private javax.swing.JPanel pnNav;

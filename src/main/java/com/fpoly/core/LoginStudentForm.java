@@ -5,6 +5,7 @@ import com.fpoly.core.forms.ForgetPasswordForm;
 import com.fpoly.core.forms.LoginAdminForm;
 import com.fpoly.core.forms.LoginTeacherForm;
 import com.fpoly.core.models.StudentModel;
+import java.awt.event.ActionEvent;
 import java.util.Arrays;
 import javax.swing.JOptionPane;
 
@@ -320,4 +321,8 @@ public class LoginStudentForm extends javax.swing.JFrame {
     private javax.swing.JPasswordField txtPassword;
     private javax.swing.JTextField txtUsername;
     // End of variables declaration//GEN-END:variables
+
+    public void cbxBangcapActionPerformed(ActionEvent evt) {
+        // TODO add your handling code here:
+    }
 }

@@ -1,11 +1,9 @@
 package com.fpoly.core.dao;
 
 import com.fpoly.core.connection.DatabaseConnection;
-import com.fpoly.core.models.StudentModel;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.Statement;
 import javax.swing.JOptionPane;
 
 public class StudentDAO {
@@ -29,22 +27,9 @@ public class StudentDAO {
         return "";
     }
 
-    public String checkEmail(String email) {
-        String sqlemail = "select email from sinhvien where email = ?";
-        try (Connection con = DatabaseConnection.openConnection()) {
-            PreparedStatement ptmt = con.prepareStatement(sqlemail);
-            ptmt.setString(1, email);
 
-            ResultSet rs = ptmt.executeQuery();
-            if (rs.next()) {
-                return rs.getString(1);
-            }
-        } catch (Exception e) {
-        }
-        return "";
-    }
 
-    public String selectTensv(String tenTK) {
+    public String getNameStudentBytenTK(String tenTK) {
         String sqlemail = "select tensv from sinhvien where tenTK = ?";
         try (Connection con = DatabaseConnection.openConnection()) {
             PreparedStatement ptmt = con.prepareStatement(sqlemail);
@@ -59,7 +44,7 @@ public class StudentDAO {
         return "";
     }
 
-    public boolean checkTk(String tenTK) {
+    public boolean existsTenTk(String tenTK) {
         String sqlemail = "select tenTK from sinhvien where tenTK = ?";
         try (Connection con = DatabaseConnection.openConnection()) {
             PreparedStatement ptmt = con.prepareStatement(sqlemail);
@@ -74,7 +59,7 @@ public class StudentDAO {
         return false;
     }
 
-    public String selectEmail(String tenTk) {
+    public String getEmailByTenTk(String tenTk) {
         String sqlemail = "select email from sinhvien where tenTK = ?";
         try (Connection con = DatabaseConnection.openConnection()) {
             PreparedStatement ptmt = con.prepareStatement(sqlemail);

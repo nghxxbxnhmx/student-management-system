@@ -38,7 +38,7 @@ public class HomePageForm extends javax.swing.JFrame {
         lblGradeSemester = new javax.swing.JLabel();
         lblLichHoc = new javax.swing.JLabel();
         lblLichHoc1 = new javax.swing.JLabel();
-        lblLichHoc2 = new javax.swing.JLabel();
+        lblLichThi = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         jLabel33 = new javax.swing.JLabel();
         jLabel34 = new javax.swing.JLabel();
@@ -117,11 +117,11 @@ public class HomePageForm extends javax.swing.JFrame {
         lblLichHoc1.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         lblLichHoc1.setText("Dịch vụ");
 
-        lblLichHoc2.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
-        lblLichHoc2.setText("Điểm danh");
-        lblLichHoc2.addMouseListener(new java.awt.event.MouseAdapter() {
+        lblLichThi.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        lblLichThi.setText("Lịch thi");
+        lblLichThi.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblLichHoc2MouseClicked(evt);
+                lblLichThiMouseClicked(evt);
             }
         });
 
@@ -132,7 +132,7 @@ public class HomePageForm extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(34, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblLichHoc2, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblLichThi, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblLichHoc1, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblGradeSemester, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblLichHoc, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -149,7 +149,7 @@ public class HomePageForm extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(lblLichHoc, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(lblLichHoc2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblLichThi, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(lblLichHoc1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(378, Short.MAX_VALUE))
@@ -369,12 +369,14 @@ public class HomePageForm extends javax.swing.JFrame {
     }//GEN-LAST:event_lblGradeSemesterMouseClicked
 
     private void lblLichHocMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblLichHocMouseClicked
-        // TODO add your handling code here:
+        this.setVisible(false);
+        new studentschedule().setVisible(true);
     }//GEN-LAST:event_lblLichHocMouseClicked
 
-    private void lblLichHoc2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblLichHoc2MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_lblLichHoc2MouseClicked
+    private void lblLichThiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblLichThiMouseClicked
+        this.setVisible(false);
+        new lichThi().setVisible(true);
+    }//GEN-LAST:event_lblLichThiMouseClicked
 
     /**
      * @param args the command line arguments
@@ -446,6 +448,6 @@ public class HomePageForm extends javax.swing.JFrame {
     private javax.swing.JLabel lblHomepageStudent;
     private javax.swing.JLabel lblLichHoc;
     private javax.swing.JLabel lblLichHoc1;
-    private javax.swing.JLabel lblLichHoc2;
+    private javax.swing.JLabel lblLichThi;
     // End of variables declaration//GEN-END:variables
 }
