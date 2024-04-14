@@ -4,12 +4,12 @@
  */
 package com.fpoly.core.forms;
 
+import com.fpoly.core.services.CallApiService;
 import com.fpoly.core.dao.Interface.Interface_Combobox_data;
 import com.fpoly.core.dao.Interface.Managenment_Teacher;
 import com.fpoly.core.dao.TeacherDAO;
 import com.fpoly.core.models.TeacherModel;
 import com.fpoly.core.services.CallApiService;
-import jakarta.mail.internet.MailDateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -25,7 +25,7 @@ public final class Admin_AddTeacher extends javax.swing.JFrame implements Interf
     DefaultTableModel tbmodelSchedule = new DefaultTableModel();
     DefaultTableModel tbmodelMark = new DefaultTableModel();
     TeacherDAO tcdao = new TeacherDAO();
-    CallApiService callASV = new CallApiService();
+    CallApiService callASV = new CallApiService() ;
     //bang cap
     String[] degrees = {
         "Thạc sĩ", "Tiến sĩ", "Tiến sĩ Khoa học", "Phó giáo sư", "Giáo sư"
@@ -934,5 +934,15 @@ public final class Admin_AddTeacher extends javax.swing.JFrame implements Interf
     private javax.swing.JTextField txtTengiangvien;
     private javax.swing.JTextField txtteacherCode;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void fillComboboxHocky() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void fillComboboxKhoa() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 
 }

@@ -6,4 +6,6 @@ public interface Interface_Combobox_data {
     public void fillComboboxQueQuan();
     public void fillComboboxDanToc();
     public void fillComboboxChuyenNganh();
+    public void fillComboboxHocky();
+    public void fillComboboxKhoa();
 }

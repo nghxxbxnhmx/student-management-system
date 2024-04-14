@@ -447,6 +447,9 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="T&#xec;m"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnFindActionPerformed"/>
+                  </Events>
                 </Component>
                 <Container class="javax.swing.JPanel" name="jPanel29">
 
@@ -496,7 +499,7 @@
                                   <Group type="102" alignment="1" attributes="0">
                                       <Component id="jLabel19" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
-                                      <Component id="txNgaynhaphoc" min="-2" pref="321" max="-2" attributes="0"/>
+                                      <Component id="txtNgaynhaphoc" min="-2" pref="321" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="1" attributes="0">
                                       <Component id="jLabel18" min="-2" max="-2" attributes="0"/>
@@ -544,7 +547,7 @@
                                       <EmptySpace min="-2" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="3" attributes="0">
                                           <Component id="jLabel19" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
-                                          <Component id="txNgaynhaphoc" alignment="3" min="-2" pref="43" max="-2" attributes="0"/>
+                                          <Component id="txtNgaynhaphoc" alignment="3" min="-2" pref="43" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace min="-2" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="3" attributes="0">
@@ -570,44 +573,37 @@
                                       </Group>
                                   </Group>
                               </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" attributes="0">
-                                      <EmptySpace max="32767" attributes="0"/>
-                                      <Component id="jLabel24" min="-2" pref="33" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="137" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" attributes="0">
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <Component id="cbxQuequan" min="-2" pref="33" max="-2" attributes="0"/>
-                                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                                              <Group type="103" groupAlignment="3" attributes="0">
-                                                  <Component id="jLabel25" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
-                                                  <Component id="cbxDantoc" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
-                                              </Group>
-                                              <EmptySpace max="32767" attributes="0"/>
-                                          </Group>
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Component id="cbxKhoa" min="-2" pref="33" max="-2" attributes="0"/>
-                                                  <Component id="jLabel21" min="-2" pref="33" max="-2" attributes="0"/>
-                                              </Group>
-                                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                                              <Group type="103" groupAlignment="3" attributes="0">
-                                                  <Component id="jLabel22" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
-                                                  <Component id="cbxHocky" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
-                                              </Group>
-                                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                                              <Group type="103" groupAlignment="3" attributes="0">
-                                                  <Component id="jLabel23" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
-                                                  <Component id="cbxNganhHoc" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
-                                              </Group>
-                                              <EmptySpace max="32767" attributes="0"/>
-                                          </Group>
+                                          <Component id="cbxQuequan" min="-2" pref="33" max="-2" attributes="0"/>
+                                          <Component id="jLabel24" alignment="1" min="-2" pref="33" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="jLabel25" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
+                                          <Component id="cbxDantoc" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="cbxKhoa" min="-2" pref="33" max="-2" attributes="0"/>
+                                          <Component id="jLabel21" min="-2" pref="33" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="jLabel22" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
+                                          <Component id="cbxHocky" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="jLabel23" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
+                                          <Component id="cbxNganhHoc" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
+                              <EmptySpace pref="23" max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="btnUpdateStudent" alignment="3" min="-2" pref="37" max="-2" attributes="0"/>
                                   <Component id="btnRemoveStudent" alignment="3" min="-2" pref="37" max="-2" attributes="0"/>
@@ -666,7 +662,7 @@
                     </Component>
                     <Component class="javax.swing.JTextField" name="txtEmail">
                     </Component>
-                    <Component class="javax.swing.JTextField" name="txNgaynhaphoc">
+                    <Component class="javax.swing.JTextField" name="txtNgaynhaphoc">
                     </Component>
                     <Component class="javax.swing.JTextField" name="txtMK">
                     </Component>

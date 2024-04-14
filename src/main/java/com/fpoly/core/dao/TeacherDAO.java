@@ -9,7 +9,6 @@ import com.fpoly.core.models.TeacherModel;
 import java.util.List;
 
 import java.sql.Connection;
-import java.util.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
